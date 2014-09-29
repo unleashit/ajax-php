@@ -1,0 +1,13 @@
+body {
+  font-family: "open sans", serif;
+  background: #ccc;
+}
+.container-fluid {
+  max-width: 98%;
+}
+.jumbotron {
+    margin-top: 20px;
+    background: #eee;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
