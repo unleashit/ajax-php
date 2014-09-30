@@ -5,7 +5,7 @@ var Actors = {
     init: function( config ) {
         this.config = config;
 
-        $('button').remove();
+        $('#actor-selection').find('button').remove();
         this.setupTemplates();
         this.bindEvents();
     },
@@ -20,13 +20,20 @@ var Actors = {
         });
     },
     fetchActors: function() {
+        var alist = Actors.config.actorsList;
         $.ajax({
             url: 'index.php',
             type: 'POST',
             data: Actors.config.form.serialize(),
             dataType: 'json',
             success: function (results) {
-                Actors.config.actorsList.empty().append( Actors.config.actorListTemplate( results ) );
+                Actors.config.actorsList.empty();
+                if ( results[0] ) {
+                    alist.show().append(Actors.config.actorListTemplate(results));
+                    $('.no-results').remove();
+                } else {
+                    alist.hide().parent().append('<p class="no-results">Nothing found.</p>');
+                }
             },
             error: function () {
                 alert('Could not connect');
