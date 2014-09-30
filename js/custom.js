@@ -28,9 +28,9 @@ var Actors = {
             dataType: 'json',
             success: function (results) {
                 Actors.config.actorsList.empty();
+                $('.no-results').remove();
                 if ( results[0] ) {
                     alist.show().append(Actors.config.actorListTemplate(results));
-                    $('.no-results').remove();
                 } else {
                     alist.hide().parent().append('<p class="no-results">Nothing found.</p>');
                 }

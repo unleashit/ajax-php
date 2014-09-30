@@ -20,13 +20,20 @@ if ( isset($_POST['q']) ) {
 <button type="submit" class="btn btn-lg btn-primary">Go!</button>
 </form>
 
+<?php
+    if ( isset($actors) && !count($actors) )  {
+        echo '<p>Nothing found.</p>';
+    } else {
+?>
+
 <ul class="actors_list">
 
-    <?php if ( isset($actors) ) : ?>
-        <?php foreach( $actors as $a ) {
-            echo "<li data-actor_id='{$a->actor_id}'><a href='actor.php?actor_id={$a->actor_id}'>{$a->first_name} {$a->last_name}</a></li>";
-        }
-    endif;  ?>
+<?php if ( isset($actors) ) {
+            foreach( $actors as $a ) {
+         echo "<li data-actor_id='{$a->actor_id}'><a href='actor.php?actor_id={$a->actor_id}'>{$a->first_name} {$a->last_name}</a></li>";
+     }
+    }
+} ?>
 
     <script id="actor_list_template" type="text/x-handlebars-template">
         {{#each this}}
