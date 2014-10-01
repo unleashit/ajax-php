@@ -1,8 +1,6 @@
 <?php
 include '_partials/header.php';
-if ( isset($_POST['q']) ) {
-	$val = $_POST['q'];
-}
+$val = (isset($_POST['q']) ? $_POST['q'] : "");
 ?>
 
 <h1>Search Actors By Last Name</h1>
@@ -30,25 +28,27 @@ if ( isset($_POST['q']) ) {
 
 <?php if ( isset($actors) ) {
             foreach( $actors as $a ) {
-         echo "<li data-actor_id='{$a->actor_id}'><a href='actor.php?actor_id={$a->actor_id}'>{$a->first_name} {$a->last_name}</a></li>";
-     }
-    }
+                echo "<li data-actor_id='{$a->actor_id}'><a href='actor.php?actor_id={$a->actor_id}'>{$a->first_name} {$a->last_name}</a></li>";
+            }
+        }
 } ?>
 
-    <script id="actor_list_template" type="text/x-handlebars-template">
-        {{#each this}}
-        <li data-actor_id="{{actor_id}}">
-            <a href="actor.php?actor_id={{actor_id}}">{{fullName this}}</a>
-        </li>
-        {{/each}}
-    </script>
+<script id="actor_list_template" type="text/x-handlebars-template">
+    {{#each this}}
+    <li data-actor_id="{{actor_id}}">
+        <a href="actor.php?actor_id={{actor_id}}">{{fullName this}}</a>
+    </li>
+    {{/each}}
+</script>
+
 </ul>
 
-<!--    <div class="actor_info">-->
-<!--        <script id="actor_info_template" type="text/x-handlebars-template">-->
-<!--            <p>{{info}}</p>-->
-<!--            <span class="close">X</span>-->
-<!--        </script>-->
-<!--    </div>-->
+<div class="actor_info">
+    <script id="actor_info_template" type="text/x-handlebars-template">
+        <h3>{{first_name}} {{last_name}}</h3>
+        <p>{{film_info}}</p>
+        <span class="close">X</span>
+    </script>
+</div>
 
 <?php include '_partials/footer.php'; ?>

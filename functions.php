@@ -6,6 +6,7 @@ function isXHR() {
 
 function connect() {
 	global $pdo;
+
 	$pdo = new PDO("mysql:host=localhost;dbname=sakila", "dbuser", "123");
 }
 
@@ -22,7 +23,6 @@ function get_actors_by_last_name( $letter ) {
 
 	return $stmt->fetchAll( PDO::FETCH_OBJ );
 }
-// SELECT * FROM actor_info WHERE actor_id = 3
 
 function get_actor_info( $actor_id ) {
 	global $pdo;
@@ -37,6 +37,7 @@ function get_actor_info( $actor_id ) {
 
 	return $stmt->fetch( PDO::FETCH_OBJ );
 }
+
 function parse_film_info( $info ) {
 	$arr = explode('; ', $info);
 	$html = '<ul>';
